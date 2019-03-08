@@ -168,8 +168,8 @@ begin
   graphics_lenght <= conv_std_logic_vector(MEM_SIZE*8*8, GRAPH_MEM_ADDR_WIDTH);
   
   -- removed to inputs pin
-  direct_mode <= '1';
-  display_mode     <= "10";  -- 01 - text mode, 10 - graphics mode, 11 - text & graphics
+  direct_mode <= '0';
+  display_mode     <= "01";  -- 01 - text mode, 10 - graphics mode, 11 - text & graphics
   
   font_size        <= x"1";
   show_frame       <= '1';
@@ -285,6 +285,36 @@ begin
   --char_we
   
   
+  -- H 8
+  -- E 5
+  -- L C
+  -- O F
+  -- W 17
+  -- R 12
+  -- D 4
+  -- razmak 20
+  
+	char_we <= '1';
+ 
+  
+	process(pix_clock_s) begin
+		if rising_edge(pix_clock_s) then
+			char_address <= char_address + 1;
+		end if;
+	end process;
+	
+	char_value <= "001000" when char_address = 2354 else
+					  "000101" when char_address = 2355 else
+					  "001100" when char_address = 2356 else
+					  "001100" when char_address = 2357 else
+					  "001111" when char_address = 2358 else
+					  "100000" when char_address = 2359 else
+					  "010111" when char_address = 2360 else
+					  "001111" when char_address = 2361 else
+					  "010010" when char_address = 2362 else
+					  "001100" when char_address = 2363 else
+					  "000100" when char_address = 2364 else
+					  "100000";
   
   -- koristeci signale realizovati logiku koja pise po GRAPH_MEM
   --pixel_address
