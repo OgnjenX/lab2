@@ -250,16 +250,48 @@ begin
   --dir_red
   --dir_green
   --dir_blue
+  
+      --640 / 8 == 80 
+	dir_red   <= x"ff" when dir_pixel_column < 80  else --white   *
+				    x"ff" when dir_pixel_column < 160 else --yellow  *
+				    x"00" when dir_pixel_column < 240 else --cyan    *
+				    x"00" when dir_pixel_column < 320 else --green   *
+				    x"ff" when dir_pixel_column < 400 else --fuchsia *
+				    x"ff" when dir_pixel_column < 480 else --red     *
+				    x"00" when dir_pixel_column < 560 else --blue    *
+				    x"00";                                 --black   *
+
+	dir_green <= x"ff" when dir_pixel_column < 80  else --white   *
+				    x"ff" when dir_pixel_column < 160 else --yellow  *
+				    x"ff" when dir_pixel_column < 240 else --cyan    *
+				    x"ff" when dir_pixel_column < 320 else --green   *
+				    x"00" when dir_pixel_column < 400 else --fuchsia *
+				    x"00" when dir_pixel_column < 480 else --red     * 
+				    x"00" when dir_pixel_column < 560 else --blue    *
+				    x"00";                                 --black   *
+
+	dir_blue  <= x"ff" when dir_pixel_column < 80  else --white   *
+				    x"00" when dir_pixel_column < 160 else --yellow  *
+				    x"ff" when dir_pixel_column < 240 else --cyan    *
+				    x"00" when dir_pixel_column < 320 else --green   *
+				    x"ff" when dir_pixel_column < 400 else --fuchsia *
+				    x"00" when dir_pixel_column < 480 else --red     *
+				    x"ff" when dir_pixel_column < 560 else --blue    *
+				    x"00";                                 --black   *
  
   -- koristeci signale realizovati logiku koja pise po TXT_MEM
   --char_address
   --char_value
   --char_we
   
+  
+  
   -- koristeci signale realizovati logiku koja pise po GRAPH_MEM
   --pixel_address
   --pixel_value
   --pixel_we
+  
+
   
   
 end rtl;
