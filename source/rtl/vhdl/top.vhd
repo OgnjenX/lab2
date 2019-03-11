@@ -13,6 +13,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
 
 entity top is
   generic (
@@ -284,18 +285,7 @@ begin
   --char_value
   --char_we
   
-  
-  -- H 8
-  -- E 5
-  -- L C
-  -- O F
-  -- W 17
-  -- R 12
-  -- D 4
-  -- razmak 20
-  
-	char_we <= '1';
- 
+	char_we <= '1'; 
   
 	process(pix_clock_s) begin
 		if rising_edge(pix_clock_s) then
@@ -303,25 +293,22 @@ begin
 		end if;
 	end process;
 	
-	char_value <= "001000" when char_address = 2354 else
-					  "000101" when char_address = 2355 else
-					  "001100" when char_address = 2356 else
-					  "001100" when char_address = 2357 else
-					  "001111" when char_address = 2358 else
-					  "100000" when char_address = 2359 else
-					  "010111" when char_address = 2360 else
-					  "001111" when char_address = 2361 else
-					  "010010" when char_address = 2362 else
-					  "001100" when char_address = 2363 else
-					  "000100" when char_address = 2364 else
-					  "100000";
+	char_value <= "001000" when char_address = 2334 else --H 8 
+					  "000101" when char_address = 2335 else --E 5
+					  "001100" when char_address = 2336 else --L 12
+					  "001100" when char_address = 2337 else --L 12
+					  "001111" when char_address = 2338 else --O 15
+					  "100000" when char_address = 2339 else --space 32
+					  "010111" when char_address = 2340 else --W 23
+					  "001111" when char_address = 2341 else --O 15
+					  "010010" when char_address = 2342 else --R 18
+					  "001100" when char_address = 2343 else --L 12
+					  "000100" when char_address = 2344 else --D 4
+					  "100000";                              --space 32
   
   -- koristeci signale realizovati logiku koja pise po GRAPH_MEM
   --pixel_address
   --pixel_value
   --pixel_we
-  
-
-  
   
 end rtl;
